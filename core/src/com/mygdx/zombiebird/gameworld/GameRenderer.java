@@ -152,7 +152,42 @@ public class GameRenderer {
                     1, 1, bird.getRotation());
         }
 
+
+
+
+        if (myWorld.isReady()) {
+            // Отрисуем сначала тень
+            AssetLoader.shadow.draw(batcher, "Touch me", (136 / 2)
+                    - (42), 76);
+            // Отрисуем сам текст
+            AssetLoader.font.draw(batcher, "Touch me", (136 / 2)
+                    - (42 - 1), 75);
+        } else {
+
+            if (myWorld.isGameOver()) {
+                AssetLoader.shadow.draw(batcher, "Game Over", 25, 56);
+                AssetLoader.font.draw(batcher, "Game Over", 24, 55);
+
+                AssetLoader.shadow.draw(batcher, "Try again?", 23, 76);
+                AssetLoader.font.draw(batcher, "Try again?", 24, 75);
+
+
+
+            }
+
+            String score = myWorld.getScore() + "";
+
+            AssetLoader.shadow.draw(batcher, "" + myWorld.getScore(), (136 / 2)
+                    - (3 * score.length()), 12);
+            AssetLoader.font.draw(batcher, "" + myWorld.getScore(), (136 / 2)
+                    - (3 * score.length() - 1), 11);
+        }
+//        String score = myWorld.getScore() + "";
+//        AssetLoader.shadow.draw(batcher, "" + myWorld.getScore(), (136 / 2) - (3 * score.length()), 12);
+//        AssetLoader.font.draw(batcher, "" + myWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
+
         batcher.end();
+//        AssetLoader.shadow.draw(batcher, "hello world", x, y);
 //
 //        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 //        shapeRenderer.setColor(Color.RED);
@@ -165,7 +200,7 @@ public class GameRenderer {
 //        shapeRenderer.rect(pipe3.getBarUp().x, pipe3.getBarUp().y,
 //                pipe3.getBarUp().width, pipe3.getBarUp().height);
 //
-//        // Нижний блок для труб 1, 2 и 3
+//        // Bottom block for pipes 1, 2 and 3
 //        shapeRenderer.rect(pipe1.getBarDown().x, pipe1.getBarDown().y,
 //                pipe1.getBarDown().width, pipe1.getBarDown().height);
 //        shapeRenderer.rect(pipe2.getBarDown().x, pipe2.getBarDown().y,
@@ -173,7 +208,7 @@ public class GameRenderer {
 //        shapeRenderer.rect(pipe3.getBarDown().x, pipe3.getBarDown().y,
 //                pipe3.getBarDown().width, pipe3.getBarDown().height);
 //
-//        // Черепа для верхних труб 1, 2 и 3
+//        // Skulls for top tubes 1, 2 and 3
 //        shapeRenderer.rect(pipe1.getSkullUp().x, pipe1.getSkullUp().y,
 //                pipe1.getSkullUp().width, pipe1.getSkullUp().height);
 //        shapeRenderer.rect(pipe2.getSkullUp().x, pipe2.getSkullUp().y,
@@ -181,7 +216,7 @@ public class GameRenderer {
 //        shapeRenderer.rect(pipe3.getSkullUp().x, pipe3.getSkullUp().y,
 //                pipe3.getSkullUp().width, pipe3.getSkullUp().height);
 //
-//        // Черепа для нижних труб 1, 2 and 3
+//        // Skulls for down pipes 1, 2 and 3
 //        shapeRenderer.rect(pipe1.getSkullDown().x, pipe1.getSkullDown().y,
 //                pipe1.getSkullDown().width, pipe1.getSkullDown().height);
 //        shapeRenderer.rect(pipe2.getSkullDown().x, pipe2.getSkullDown().y,
@@ -215,4 +250,5 @@ public class GameRenderer {
         skullDown = AssetLoader.skullDown;
         bar = AssetLoader.bar;
     }
+
 }

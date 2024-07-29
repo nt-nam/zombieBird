@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
         gameWorld = new GameWorld(midPointY);
         gameRenderer = new GameRenderer(gameWorld, (int) gameHeight, midPointY);
 
-        Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
+        Gdx.input.setInputProcessor(new InputHandler(gameWorld));
     }
 
     @Override

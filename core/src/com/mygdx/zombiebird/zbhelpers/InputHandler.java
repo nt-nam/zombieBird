@@ -2,11 +2,15 @@ package com.mygdx.zombiebird.zbhelpers;
 
 import com.badlogic.gdx.InputProcessor;
 import com.mygdx.zombiebird.gameobjects.Bird;
+import com.mygdx.zombiebird.gameworld.GameWorld;
 
 public class InputHandler implements InputProcessor {
     private Bird bird;
-    public InputHandler(Bird bird){
-        this.bird = bird;
+    private GameWorld gameWorld;
+    public InputHandler(GameWorld gameWorld){
+        this.gameWorld = gameWorld;
+        bird = gameWorld.getBird();
+
     }
     @Override
     public boolean keyDown(int keycode) {
@@ -25,7 +29,11 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if(gameWorld.isReady())
+            gameWorld.start();
         bird.onClick();
+        if (gameWorld.isGameOver())
+            gameWorld.restart();
         return true;
     }
 
